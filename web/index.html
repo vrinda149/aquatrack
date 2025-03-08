@@ -18,7 +18,8 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Water Conservation App">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -29,10 +30,160 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>project_1</title>
+  <title>Water Conservation App</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f0f8ff;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #loading-animation {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: conic-gradient(transparent, #1E88E5);
+      position: relative;
+      animation: rotate 1.5s linear infinite;
+    }
+
+    #loading-animation::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      background-color: #f0f8ff;
+      border-radius: 50%;
+    }
+
+    .water-drop {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: #1E88E5;
+      border-radius: 10px 10px 10px 0;
+      transform: rotate(45deg);
+      animation: drop 2s infinite;
+    }
+
+    .water-drop:nth-child(1) {
+      top: 40px;
+      left: 80px;
+      animation-delay: 0s;
+    }
+
+    .water-drop:nth-child(2) {
+      top: 60px;
+      left: 40px;
+      animation-delay: 0.3s;
+    }
+
+    .water-drop:nth-child(3) {
+      top: 60px;
+      left: 65px;
+      animation-delay: 0.6s;
+    }
+
+    .loading-text {
+      margin-top: 30px;
+      color: #1E88E5;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .loading-subtext {
+      margin-top: 10px;
+      color: #757575;
+      font-size: 14px;
+    }
+
+    #flutter-app {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes drop {
+      0% {
+        transform: rotate(45deg) translateY(0);
+        opacity: 0;
+      }
+      50% {
+        transform: rotate(45deg) translateY(15px);
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(45deg) translateY(30px);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div id="loading-container">
+    <div id="loading-animation">
+      <div class="water-drop"></div>
+      <div class="water-drop"></div>
+      <div class="water-drop"></div>
+    </div>
+    <div class="loading-text">Loading Water Conservation App</div>
+    <div class="loading-subtext">Please wait while we prepare your experience...</div>
+  </div>
+
+  <div id="flutter-app"></div>
+
+  <script>
+    // Function to hide loading and show Flutter app
+    function hideLoading() {
+      document.getElementById('loading-container').style.display = 'none';
+      document.getElementById('flutter-app').style.opacity = '1';
+    }
+
+    // Add event listener for Flutter initialization
+    window.addEventListener('flutter-first-frame', function() {
+      // Give a small delay to ensure smooth transition
+      setTimeout(hideLoading, 500);
+    });
+
+    // Fallback in case the event doesn't fire
+    setTimeout(function() {
+      if (document.getElementById('loading-container').style.display !== 'none') {
+        hideLoading();
+      }
+    }, 8000); // 8 seconds fallback
+  </script>
+
+  <!-- Flutter Bootstrap Script -->
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

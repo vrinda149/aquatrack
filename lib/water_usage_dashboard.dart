@@ -190,7 +190,10 @@ class _WaterUsageDashboardState extends State<WaterUsageDashboard> {
                     MaterialPageRoute(
                         builder: (context) => const WaterConservationPage()));
               },
-              child: const Text('Water Conservation Techniques'))
+              child: const Text(
+                'Water Conservation Techniques',
+                style: TextStyle(color: Colors.white),
+              ))
         ],
       ),
       body: FutureBuilder<ThinkSpeakModel>(

@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:project_1/homepage.dart';
-import 'package:project_1/water_usage_dashboard.dart';
+import 'package:project_1/api/thinkspeak_api_service.dart';
+import 'package:project_1/api/water_summary.dart';
+import 'package:project_1/aquatrack_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => WaterUsageViewModel(
+            apiService: ThingSpeakService(),
+          ),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const WaterUsageDashboard(),
+      home: const WaterUsageTracker(),
     );
   }
 }

@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final thinkSpeakModel = thinkSpeakModelFromJson(jsonString);
-
 import 'dart:convert';
 
 ThinkSpeakModel thinkSpeakModelFromJson(String str) =>

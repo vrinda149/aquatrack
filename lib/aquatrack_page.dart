@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_1/api/water_summary.dart';
 import 'package:project_1/aqua_widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:intl/intl.dart';
 
 class WaterUsageTracker extends StatelessWidget {
   const WaterUsageTracker({super.key});

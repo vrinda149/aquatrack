@@ -1,3 +1,5 @@
+// not using
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -265,7 +267,7 @@ class _WaterUsageDashboardState extends State<WaterUsageDashboard> {
               children: [
                 // Raw Data Table
                 SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
+                  scrollDirection: Axis.vertical,
                   child: DataTable(
                     columns: const [
                       DataColumn(
